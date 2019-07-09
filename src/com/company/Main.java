@@ -2,6 +2,8 @@ package com.company;
 
 import org.json.simple.*;
 import org.w3c.dom.*;
+
+import javax.print.Doc;
 import javax.xml.parsers.*;
 import java.io.*;
 
@@ -9,8 +11,85 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Main {
     public static void main(String[] args) {
-	// write your code here
-       // String[][] li = {{"head","valuetype-def", "valueset", "value-el"}, {"body", "track-spec", "attributes", "group", "set-spec"}};
+        XMLReader xmlReader = new XMLReader();
+        Document doc = xmlReader.getFile("mySpec.xml");
+        Element root = xmlReader.getRoot(doc);
+
+        NodeList nLi = xmlReader.getNodeList("body", root);
+        Element elmnt = (Element) nLi.item(0);
+
+        /*
+        NodeList childLi = elmnt.getChildNodes();
+        Node nd = childLi.item(0);
+
+        NodeList chldElmtLi = elmnt.getElementsByTagName(nd.toString());
+
+        System.out.println(chldElmtLi.item(0)); */
+
+        Node chldNode = elmnt.getFirstChild();
+
+
+
+        NodeList trackLi = xmlReader.getNodeList("track-spec", (Element)nLi.item(0));
+
+        System.out.println(trackLi.getLength());
+
+        // gets track specs
+        for (Integer i=0; i<trackLi.getLength(); i++){
+            Node n = trackLi.item(i);
+            Element e = (Element) n;
+            System.out.println(e.getAttribute("name"));
+        }
+
+        Element el = (Element) trackLi.item(0);
+
+        el.setAttribute("name1", "newName");
+        el.setAttribute("zebra", "aaaaa");
+        el.setAttribute("open", "zzz");
+
+        System.out.println("Name:       "+el.getAttribute("name") );
+
+        System.out.println(el.getAttribute("name1"));
+
+        System.out.println(el.getAttributes().item(2));
+    }
+
+}
+
+class XMLReader{
+    public static void main(String[] args){
+    }
+
+    public Document getFile(String fileName){
+        try {
+            File inputFile = new File(fileName);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newDefaultInstance();
+            DocumentBuilder dbBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dbBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize(); // removes empty text nodes and joins adjacent nodes
+            return doc;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            Document doc = null;
+            return doc;
+        }
+    }
+
+    public Element getRoot(Document doc){
+        return doc.getDocumentElement();
+    }
+
+    public NodeList getNodeList(String tag, Element el){
+        NodeList li = el.getElementsByTagName(tag);
+        return li;
+
+    }
+
+
+}
+
+        /* NOTES
         try {
             File inputFile = new File("mySpec.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newDefaultInstance(); //Factory ==> method for creating object
@@ -60,7 +139,7 @@ public class Main {
                 Node n = li1.item(i);
                 Element var = (Element) n;
                 System.out.println(var.getAttribute("name"));
-            }*/
+            }
 
 
 
@@ -84,3 +163,4 @@ class NewClass {
         System.out.println("Hello World");
     }
 }
+*/
