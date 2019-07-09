@@ -84,7 +84,37 @@
             <attribute name="type" valuetype="phaseType"/>
             <attribute name="word" link-color="red" valuetype="MultiLink(words)"/>
             <attribute name="segment" link-color="green" valuetype="MultiLink"/>
+            <attribute name="reference" valuetype="ReciprocalLink(gesture)"/>
         </track-spec>
-    
+
+        <!-- Multilink(track-spec) select the elements of the track-spec to 'link' up the the elements within the time of the multilink element
+        
+        Multilink you can select any elements of any tracks within the time of the multilink element -->
+
+        <set-spec name="objects">
+            <attribute name="name" valuetype="String" display="true"/>
+            <attribute name="gesture" valuetype="ReciprocalLink(reference)"/>
+        </set-spec>
+        <!--To add to a set, highlight the given area, then click on the set window, which will make the creat/edit window switch to add, then you can add elements to that set -->
+
+        <track-spec name="beats" type="primarypoint">
+        <doc>This track contains time points vs intervals</doc>
+        <attribute name="intensity" display="true">
+            <value-el>high</value-el>
+            <value-el>low</value-el>
+        </attribute>
+        </track-spec>
+
+        <!-- primarypoint: just a point, no start/end time to create a point, move the line to where you want it to be, then click 'start' then 'create and edit'-->
+
+        <track-spec name="subdiv" type="subdivision" ref="gesture phrase" color-attr="type">
+            <attribute name="type" valuetype="phaseType"/>
+        </track-spec>
+
+        <!--select the element that you want to subivide, move the start to where you want it to start, move the end, right click ==>subdivide/edit
+        Now you have yourself a subdivision -->
+
+
+
         </body>
     </annotaion-spec>
