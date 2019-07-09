@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<annotation-spec>
+
+  <doc>
+    This annotation specification was specifically developed to code
+    postural/gestural events from TV session of the "Literarisches
+    Quartett" where four literary critics discuss a number of recently
+    published books. This scheme is thus suited for a group of sitting
+    people where the seating facillities are immobile.
+  </doc>
+
+<!-- **************** HEAD ********************** -->
+ 
+ <head>
+  <valuetype-def>
+
+   <valueset name="gestureType">
+     <value-el color="#8cda8e">beat</value-el>
+     <value-el>deictic</value-el>
+     <value-el>emblem</value-el>
+     <value-el>iconic</value-el>
+     <value-el>metaphoric</value-el>
+     <value-el>adaptor</value-el>
+   </valueset>
+
+
+
+   <valueset name="phaseType">
+    <value-el color="#eeee00" key="p">
+      prep
+    </value-el>
+    <value-el color="#dd0000" key="s">
+      stroke
+    </value-el>
+    <value-el color="#ee8800" key="h">
+      hold
+    </value-el>
+    <value-el color="#ee00ee" key="c">
+      recoil
+    </value-el>
+    <value-el color="#00bb33" key="r">
+      retract
+    </value-el>
+
+   </valueset>
+
+
+  </valuetype-def>
+ </head>
+
+<!-- ************************* BODY ******************** -->
+
+ <body>
+
+  <track-spec name="trl" type="primary">
+    <doc>
+      This track contains the transliteration of the spoken
+      discourse. The <b>token</b> attribute contains the word or sound
+      uttered. There are a number of special marks signified by
+      squared brackets like [breath] or [aeh] for the mark-up of
+      nonverbal sounds. Note that there is <b>no syllable
+      information</b>.
+    </doc>
+    <attribute name="token">
+      <doc>
+        Words and nonverbal sounds.
+      </doc>
+    </attribute>
+  </track-spec>
+    
+
+  <group name="gesture">
+    <doc>
+      This group clusters all so-called gestures which are really <b>arm
+      and hand gestures</b>. The members of this group give a functional
+      view on gesture. Overlap is only possible with beats that can
+      occur in any type of gesture. Look at description of <b>phase</b>
+      values to see how that is coded.
+    </doc>
+
+    <track-spec name="phase" type="primary" color-attr="type" >
+      <attribute name="type" valuetype="phaseType">
+      <doc>
+        My phase description is based on the phases postulated by
+        Kendon and McNeill (1992), later on extended by Kita et
+        al. (1999).
+      </doc>
+      </attribute>
+    </track-spec>
+
+    <track-spec name="phrase" type="span" ref="gesture.phase">
+      <attribute name="category" valuetype="gestureType" display="true" />
+    </track-spec>
+
+    <track-spec name="group" type="span" ref="gesture.phrase">
+      <attribute name="name" valuetype="String" />
+    </track-spec>
+
+  </group>
+
+ </body> 
+
+
+
+</annotation-spec>

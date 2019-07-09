@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+This specification introduces the track type "subdivision".
+
+(c) 2009 Michael Kipp, DFKI, support@anvil-software.de
+
+-->
+
+<annotation-spec>
+  <head>
+    <valuetype-def>
+      <valueset name="phaseType">
+          <value-el color="green" key="p">preparation</value-el>
+          <value-el color="red" key="s">stroke</value-el>
+          <value-el color="yellow" key="h">hold</value-el>
+          <value-el color="blue" key="r">retraction</value-el>
+      </valueset>
+
+      <valueset name="gestureType">
+          <value-el>deictic</value-el>
+          <value-el>iconic</value-el>
+          <value-el>emblem</value-el>
+          <value-el>beat</value-el>
+      </valueset> 
+    </valuetype-def>
+  </head>
+
+  <body>
+
+      <track-spec name="gesture" type="primary">
+        <attribute name="category" valuetype="gestureType" />
+      </track-spec>
+
+      <track-spec name="phase" type="subdivision" ref="gesture" color-attr="type">
+        <attribute name="type" valuetype="phaseType" />
+      </track-spec>
+
+      <track-spec name="phase-subdivision" type="subdivision" ref="phase" >
+        <attribute name="foo" valuetype="String" />
+      </track-spec>
+
+  </body>
+</annotation-spec>
+

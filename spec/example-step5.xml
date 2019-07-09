@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+This specification introduces the WAVEFORM.
+
+We define a track of type "waveform". It will display the waveform of
+the video's sound and can not be edited by the user.
+-->
+
+<annotation-spec>
+  <body>
+
+    <track-spec name="wave" type="waveform" />
+
+    <track-spec name="words" type="primary">
+      <attribute name="token" valuetype="String" />
+    </track-spec>
+
+    <group name="gesture">
+      <track-spec name="phase" type="primary">
+        <attribute name="type">
+          <value-el>preparation</value-el>
+          <value-el>stroke</value-el>
+          <value-el>hold</value-el>
+          <value-el>retraction</value-el>
+        </attribute>
+      </track-spec>
+
+      <track-spec name="phrase" type="span" ref="gesture.phase">
+        <attribute name="category">
+          <value-el>deictic</value-el>
+          <value-el>iconic</value-el>
+          <value-el>emblem</value-el>
+          <value-el>beat</value-el> 
+        </attribute>
+      </track-spec>
+    </group>
+
+  </body>
+</annotation-spec>
+

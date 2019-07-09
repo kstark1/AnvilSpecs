@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+This specification introduces the HEAD.
+
+We define special valuetypes in the head section of the file. These
+can be reused throughout the attribute definitions in the body
+section.
+-->
+
+<annotation-spec>
+  <head>
+    <valuetype-def>
+      <valueset name="phaseType">
+          <value-el>preparation</value-el>
+          <value-el>stroke</value-el>
+          <value-el>hold</value-el>
+          <value-el>retraction</value-el>
+      </valueset>
+
+      <valueset name="gestureType">
+          <value-el>deictic</value-el>
+          <value-el>iconic</value-el>
+          <value-el>emblem</value-el>
+          <value-el>beat</value-el>
+      </valueset> 
+    </valuetype-def>
+  </head>
+
+  <body>
+
+    <track-spec name="wave" type="waveform" />
+
+    <track-spec name="words" type="primary">
+      <attribute name="token" valuetype="String" />
+    </track-spec>
+
+    <group name="gesture">
+      <track-spec name="phase" type="primary">
+        <attribute name="type" valuetype="phaseType" />
+      </track-spec>
+
+      <track-spec name="phrase" type="span" ref="gesture.phase">
+        <attribute name="category" valuetype="gestureType" />
+      </track-spec>
+    </group>
+
+  </body>
+</annotation-spec>
+

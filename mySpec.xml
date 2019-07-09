@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--Comment-->
+<!-- WHAT DO THE LINKS DO?? example-step8.xml-->
+
+<annotaion-spec>
+    <head>
+        <valuetype-def>
+            <valueset name="phaseType">
+                 <value-el color="green">preparation</value-el>
+                 <value-el color="blue">stroke</value-el>
+                 <value-el color="cyan">hold</value-el>
+                 <value-el color="light red">retraction</value-el>
+        </valueset>
+
+      </valuetype-def>
+    </head>
+
+    <!--Works similarily to a subroutine: define all the values at the top with valueset name="___", then call them further down with valuetype="_____" 
+    ** NOTE also similar to subroutines, you use the same input values ==> eg need to include color-attr="type" when creating the track spec
+    -->
+
+
+<!-- body tells you the tracks-->
+<!-- type="primary" means that the track can stop and start at any point in time
+    type="span" refers to another track, can only add an elemet as long as the sum of the track referenced, cannot make it shorter or longer
+    if you change the primary, it will also change the span ==> you can span multiple elements
+    group.trackName
+   primary point ==> single point, no start/end
+    singleton ==> refers to another track, one single element on anotehr track
+    subbivision ==> divides the elements of the reference track
+-->
+    <body>
+        <track-spec name="words" type="primary">
+            <attribute name="token" valuetype="String"/>
+        </track-spec>
+        <!--This creates the words track -->
+        <!-- You have to manually input the words that they are saying-->
+
+        <track-spec name="gesture phase" type="primary" color-attr="type">
+            <attribute name="type" valuetype="phaseType"/>
+        </track-spec>
+
+         <!-- name = "type" ==> these are the types of attributes that can be annotated into the file, works similarily to a menu  -->
+         <!-- key="__" adds keyboard shortcut-->
+
+        <track-spec name="movement" type="primary" color-attr="type">
+            <attribute name="type">
+                <value-el key="u" color="green">
+                <doc>
+                Up and moving around
+                </doc>
+                up
+                </value-el>
+
+                <value-el>
+                <doc>
+                Sitting in a chair
+                </doc>
+                down
+                </value-el>
+<!--the information witten in doc will come up when you click on the speech bubble with the exclaimation mark, similar to external documentation if you don't understand what the attribute types are -->
+            
+            </attribute>
+        </track-spec>
+
+        <group name="hands">
+            <track-spec name="left" type="primary">
+                <attribute name="token" valuetype="String"/>
+            </track-spec>
+
+            <track-spec name="right" type="span" ref="hands.left">
+                <attribute name="token" valuetype="String"/>
+            </track-spec>
+            </group>
+        <!-- Groups left and right tracks together under the hands group
+        hands is the larger block on the left on the annotaion board and left/right are the smaller blocks that fill up hand
+        -->
+
+        <track-spec name="wave" type="waveform"/>
+        <!-- waveform shows shape of the sound waves of the video, user cannot edit/change info-->
+
+        <track-spec name="gesture phrase" type="primary" color-attr="type">
+            <attribute name="type" valuetype="phaseType"/>
+            <attribute name="word" link-color="red" valuetype="MultiLink(words)"/>
+            <attribute name="segment" link-color="green" valuetype="MultiLink"/>
+        </track-spec>
+    
+        </body>
+    </annotaion-spec>

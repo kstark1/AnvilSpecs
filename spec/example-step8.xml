@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+This specification introduces LINKS.
+
+Links can be used to specify connections between elements of different
+tracks. For example, you can specify the associated word(s) for a
+gesture or the segment (sentence/phrase) in which it occurs or which
+it relates to.
+-->
+
+<annotation-spec>
+  <head>
+    <valuetype-def>
+      <valueset name="segmentType">
+          <value-el>assertion</value-el>
+          <value-el>command</value-el>
+          <value-el>question</value-el>
+      </valueset>
+
+      <valueset name="phaseType">
+          <value-el>preparation</value-el>
+          <value-el>stroke</value-el>
+          <value-el>hold</value-el>
+          <value-el>retraction</value-el>
+      </valueset>
+
+      <valueset name="gestureType">
+          <value-el>deictic</value-el>
+          <value-el>iconic</value-el>
+          <value-el>emblem</value-el>
+          <value-el>beat</value-el>
+      </valueset> 
+    </valuetype-def>
+  </head>
+
+  <body>
+
+    <track-spec name="wave" type="waveform" />
+
+    <track-spec name="words" type="primary">
+      <attribute name="token" valuetype="String" />
+    </track-spec>
+
+    <track-spec name="segments" type="span" ref="words" >
+      <attribute name="type" valuetype="segmentType" />
+    </track-spec>
+
+    <group name="gesture" >
+      <track-spec name="phase" type="primary">
+        <attribute name="type" valuetype="phaseType" />
+      </track-spec>
+
+      <track-spec name="phrase" type="span" ref="gesture.phase">
+        <attribute name="category" valuetype="gestureType" />
+	<attribute name="word" link-color="red" 
+                   valuetype="MultiLink(words)" />
+	<attribute name="segment" link-color="green"
+                   valuetype="MultiLink" />
+      </track-spec>
+    </group>
+
+  </body>
+</annotation-spec>
+

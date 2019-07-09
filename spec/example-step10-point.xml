@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+This specification introduces the point type elements.
+
+
+-->
+
+<annotation-spec>
+  <head>
+    <valuetype-def>
+      <valueset name="phaseType">
+          <value-el>preparation</value-el>
+          <value-el>stroke</value-el>
+          <value-el>hold</value-el>
+          <value-el>retraction</value-el>
+      </valueset>
+
+      <valueset name="gestureType">
+          <value-el>deictic</value-el>
+          <value-el>iconic</value-el>
+          <value-el>emblem</value-el>
+          <value-el>beat</value-el>
+      </valueset> 
+    </valuetype-def>
+  </head>
+
+  <body>
+
+    <group name="gesture" >
+      <track-spec name="phase" type="primary">
+        <attribute name="type" valuetype="phaseType" />
+      </track-spec>
+
+      <track-spec name="phrase" type="span" ref="gesture.phase">
+        <attribute name="category" valuetype="gestureType" />
+	<attribute name="reference" valuetype="ReciprocalLink(gesture)" />
+      </track-spec>
+    </group>
+
+    <track-spec name="beats" type="primarypoint" >
+      <doc>This track contains time points instead of intervals.</doc>
+      <attribute name="intensity" display="true" >
+	<value-el>high</value-el>
+	<value-el>medium</value-el>
+	<value-el>low</value-el>
+      </attribute>
+    </track-spec>
+
+    <track-spec name="beatsequence" type="span" ref="beats">
+      <doc>A span track can also refer to a point track.</doc>
+      <attribute name="relevance" valuetype="Number(-3,3)" display="true" />
+    </track-spec>
+
+  </body>
+</annotation-spec>
+

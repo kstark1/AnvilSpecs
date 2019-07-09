@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+This specification introduces the SPAN TRACK TYPE and COLOR-CODING. 
+
+We create three tracks. The third track is a span track. It depends on
+the second track, meaning that elements of the third track are defined
+via a start and end element in the second track.
+
+Color-coding of an attribute (of type ValueSet) can be achieved by
+assigning colors to the different values of the attribute. The name of
+the attribute must be declared in the "track-spec" tag. Colors are
+defined by name (see the Anvil manual's appendix for a complete list)
+or RGB value (see below in the last track).
+-->
+
+<annotation-spec>
+  <body>
+    <track-spec name="words" type="primary">
+      <attribute name="token" valuetype="String" />
+    </track-spec>
+
+    <track-spec name="gesture phase" type="primary" color-attr="type">
+      <attribute name="type">
+        <value-el color="green">preparation</value-el>
+        <value-el color="red">stroke</value-el>
+        <value-el color="cyan">hold</value-el>
+        <value-el color="gray">retraction</value-el>
+      </attribute>
+    </track-spec>
+
+    <track-spec name="gesture" type="span" ref="gesture phase" color-attr="category">
+      <attribute name="category">
+        <value-el color="#ffaa00">deictic</value-el>
+        <value-el color="#ffff60">iconic</value-el>
+        <value-el color="#ffffa0">emblem</value-el>
+        <value-el color="#ffaaf0">beat</value-el>
+      </attribute>
+    </track-spec>
+  </body>
+</annotation-spec>
+

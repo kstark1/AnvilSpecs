@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- SHOWCASE ALL TRACK TYPES -->
+
+<annotation-spec>
+
+<body>
+
+<group name="base types">
+
+  <track-spec name="primary" type="primary">
+    <attribute name="token">
+      <value-el key="j">just</value-el>
+      <value-el key="a">a</value-el>
+      <value-el key="l">little</value-el>
+      <value-el key="t">test</value-el>
+    </attribute>
+  </track-spec>
+
+  <track-spec name="point" type="primarypoint" color-attr="anotherattribute">
+    <attribute name="anotherattribute" >
+      <value-el color="blue">one</value-el>
+      <value-el color="yellow">two</value-el>
+      <value-el color="green">three</value-el>
+    </attribute>
+  </track-spec>
+
+</group>
+
+ <group name="secondary types">
+
+  <track-spec name="singleton" type="singleton" ref="base types.primary" >
+    <attribute name="check this" valuetype="Boolean" />
+  </track-spec>
+
+  <track-spec name="span" type="span" ref="secondary types.singleton" >
+    <attribute name="something">
+      <value-el>eins</value-el>
+      <value-el>zwei</value-el>
+    </attribute>
+  </track-spec>
+
+  <track-spec name="subdivision" type="subdivision" ref="secondary types.span" >
+    <attribute name="name" valuetype="String" />
+    <attribute name="containing" valuetype="MultiLink" />
+  </track-spec>
+
+
+ </group>
+
+
+</body>
+
+</annotation-spec>

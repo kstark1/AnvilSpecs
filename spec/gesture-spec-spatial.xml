@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<annotation-spec>
+
+  <doc>
+    This annotation specification was specifically developed to code
+    postural/gestural events from TV session of the "Literarisches
+    Quartett" where four literary critics discuss a number of recently
+    published books. This scheme is thus suited for a group of sitting
+    people where the seating facillities are immobile.
+  </doc>
+
+<!-- **************** HEAD ********************** -->
+ 
+ <head>
+  <valuetype-def>
+
+   <valueset name="audiencePhaseType">
+     <value-el color="#eeee00">rise</value-el>
+     <value-el color="#ee8800">hold</value-el>
+     <value-el color="#00bb33">fall</value-el>
+   </valueset>
+
+   <valueset name="gestureType">
+     <value-el color="#8cda8e">beat</value-el>
+     <value-el>deictic</value-el>
+     <value-el>emblem</value-el>
+     <value-el>iconic</value-el>
+     <value-el>metaphoric</value-el>
+     <value-el>adaptor</value-el>
+   </valueset>
+
+   <valueset name="deicticType">
+     <value-el>
+     addressee
+     <doc>
+     Subject points to addressed person/object.
+     </doc>
+     </value-el>
+     <value-el>
+     space
+     <doc>
+     Subject points somewhere in gesture space, points to nothing
+     concrete that is present in the room.
+     </doc>
+     </value-el>
+     <value-el>
+     self
+     <doc>
+     Subject points to him/herself usually by putting the hand
+     on his/her chest.
+     </doc>
+     </value-el>
+     <value-el>
+       person
+       <doc>
+         A present person other than the speaker or addressee.
+       </doc>
+     </value-el>
+     <value-el>
+     audience
+     <doc>
+     Points at audience, usually in a circumscribing motion.
+     </doc>
+     </value-el>
+     <value-el>
+     self+addressee
+     <doc>
+     Points to himself and to addressee.
+     </doc>
+     </value-el>
+   </valueset>
+
+
+   <valueset name="phaseType">
+    <value-el color="#eeee00">
+      prep
+      <doc>
+        Preparation phase, bringing arm and hand into stroke
+        position. Note that changing hand shape before/after moving
+        the arm belongs to the preparation, too. Also code position
+        info.
+      </doc>
+    </value-el>
+    <value-el color="#dd0000">
+      stroke
+      <doc>
+        The most energetic part of the gesture movement. <b>Encode all
+        other attributes for this gesture phrase in the stroke
+        element!</b>
+      </doc>
+    </value-el>
+    <value-el color="#aa0044">
+      beats
+      <doc>
+        Only for non-beat gestures! A number of successive strokes
+        (beats); all strokes should be covered by this phase. If there
+        is a hold in-between then continue with prep.
+      </doc>
+    </value-el>
+    <value-el color="#ee8800">
+      hold
+      <doc>
+        A phase of stillness just before or just after the stroke,
+        usually used to defer the stroke so that it coincides with a
+        certain word. <b>When annotating an element as "hold" do not
+        annotate any other attributes!</b>
+      </doc>
+    </value-el>
+    <value-el color="#ee00ee">
+      recoil
+      <doc>
+        Directly after the stroke the hand may spring back so as to
+        emphasize the harshness of the stroke.
+      </doc>
+    </value-el>
+    <value-el color="#00bb33">
+      retract
+      <doc>
+        Retraction. Movement back to rest position. In sitting
+        position this is usually the arm rest, the lap or folded
+        arms. <b>Encode no other attributes in a "retract" element.</b>
+      </doc>
+    </value-el>
+    <value-el color="#00aa66">
+      partial-retract
+      <doc>
+        Retraction movement that is stopped midway to open another
+        gesture phrase. Code position info here.
+      </doc>
+    </value-el>
+   </valueset>
+
+   <valueset name="emblemType">
+	<value-el>
+	  anticipation
+	  <doc>
+	    Anticipation of evil or warning or threat. Open hand
+	    waving near own head/ear as if preparing to slap
+	    someone. Verbalization: "Oh wait!", "I see it coming", "O
+	    my!"
+	  </doc>
+	</value-el>
+	<value-el>
+	  attention
+	  <doc>
+	    Index finger held motionless in the air to emphasize the
+	    importance of what is said, seen or heard. (German:
+	    "erhobener Zeigefinger").
+	  </doc>
+	</value-el>
+	<value-el>
+	  block
+	  <doc>
+	    A gesture of total refusal ("No way!"), blocking
+	    suggestions/arguments made or expected ("No matter what, I
+	    don't accept/believe/do this."). Usually, palm toward
+	    addressee, moving like along a wall in front of the
+	    speaker either with palm facing the addressee or with
+	    index finger.
+	  </doc>
+	</value-el>
+        <value-el>
+	  chide
+	  <doc>
+	    A gesture of warning ("watch out!"), reprimand ("That was
+	    bad of you!") or attention ("Note this!"). Usually done
+	    with outstretched index finger wiggling in the air.
+	  </doc>
+	</value-el>
+	<value-el>
+	  concession
+	  <doc>
+	    A gesture of partial concession ("You are right but..."),
+	    pre-emptive defence ("I know you won't like this but...")
+	    or pre-emptive pacification ("I don't mean to disrespect
+	    your opinion but..."). Movement usually consists of
+	    showing the insides of your hands (palm down), like in a
+	    "hands up" gesture of surrender (defensiveness!).
+	  </doc>
+	</value-el>
+        <value-el>
+	  despair-threat
+	  <doc>
+	  Display of exaggerated despair or threat by lifting both
+	  arms with elbows out and fingertips almost touching the
+	  forehead. Verbalization: "what am I to do!", "jesus!", "this
+	  is so bad!". Often ironically used: "o yes, this is soooo
+	  bad!" - implying that someone overreacted.
+	  </doc>
+	</value-el>
+        <value-el>
+	  doubt-shrug
+	  <doc>
+	    A gesture indicating doubt ("I wouldn't count on that."),
+	    ignorance ("I don't know.") or indifference ("I don't
+	    care."). Movement consists of showing the insides of your
+	    hands (palm up) and is usually accompanying by a raising
+	    of the shoulders (shrug).
+	  </doc>
+	</value-el>
+	<value-el>
+	  dismiss
+	  <doc>
+	    A gesture like waving off a little boy or a pet, like
+	    haughtily dismissing a submitted person. As opposed to
+	    dump, more like waving off a little annoyance (a fly)
+	    without much emotional display (rather disgust than anger).
+	  </doc>
+	</value-el>
+	<value-el>
+	  finger-ring
+	  <doc>
+	    A sign where the index finger meets the thumb, other
+	    fingers spread out or relaxed, usually signalling fine
+	    quality, good taste etc. In a more metaphoric sense it
+	    means that the matter is very subtle, that the reasoning
+	    is very precise/sharp. Note that the same gesture is used
+	    by conductors.
+	  </doc>
+	</value-el>
+	<value-el>
+	  hand-clap
+	  <doc>
+	    One hand slaps the other hand from. Verbalization: "What
+	    luck!", "well, now!", "good!", "so...".
+	  </doc>
+	</value-el>
+	<value-el>
+	  hand-rub
+	  <doc>
+	    One hand rubs the other hand. 
+	  </doc>
+	</value-el>
+	<value-el>
+	  hands-up
+	  <doc>
+	    Both hands are raised, palms facing front. Literally
+	    taken, a gesture of surrender, showing lack of weapons
+	    (nothing to hide) and opening up body.
+	  </doc>
+	</value-el>
+	<value-el>
+	  indignation
+	  <doc>
+	    Both arms are raised, hands open, palms upwards. Shoulders
+	    are up and tense, and the face displays
+	    anger. Verbalization: "O come on!", "Now pull yourself
+	    together, will ya!". The gesture indicates one's losing
+	    temper/patience, as if provoked by a child's constant
+	    hassling.
+	  </doc>
+	</value-el>
+	<value-el>
+	  invitation
+	  <doc>
+	    Both arms are opened wide, hands open with palms towards
+	    addressee(s). Verbalization: "Welcome!", "You are invited
+	    to...", "I have nothing to hide". A gesture demonstrating
+	    cooperation, open-mindedness, open-heartedness, opening of
+	    one's own defences and innocence.
+	  </doc>
+	</value-el>
+	<value-el>
+	  knee-slap
+	  <doc>
+	    Hand(s) are slapped on knee(s) to signal something
+	    envigorating happening or incite other people to be
+	    active. Verbalization: "let's go", "well, now!", "good!",
+	    "so...". Variant: one hand slaps the other hand from high
+	    above (not like normal clapping) - looks like the knee
+	    version, only that one hand replaces the knee.
+	  </doc>
+	</value-el>
+	<value-el>
+	  more-or-less
+	  <doc>
+	    Hand(s) wiggles, palm down, eyes are slits to indicate an
+	    effort to estimate something. Verbalization: "more or
+	    less", "about/around", "approximately".
+	  </doc>
+	</value-el>
+        <value-el>
+	  number
+	  <doc>
+	    Fingers indicate a number. One finger (thumb or index
+	    finger) indicates number one, two fingers indicate number
+	    two etc.
+	  </doc>
+	</value-el>
+	<value-el>
+	  one-hand-other-hand
+	  <doc>
+	    Verbalization: "on one hand... on the other hand". Usually
+	    motioning with hand, fist, finger, arm in one direction,
+	    then in the other.
+	  </doc>
+	</value-el>
+	<value-el>
+	  pray
+	  <doc>
+	    Verbalization: "please" or "God/Heavens! Please!". Usually
+	    putting both hands together either flat or locked, still
+	    or shaking, eyes raised to heaven (or superior).
+	  </doc>
+	</value-el>
+	<value-el>
+	  purse
+	  <doc>
+	    Referring to hand shape: index finger and thumb touch and
+	    point upward, hand performing an up-and-down
+	    movement. Meaning is culture specific. In LitQua used for
+	    emphasis. Verbalization: "Ey!", "Hey!".
+	  </doc>
+	</value-el>
+	<value-el>
+	  quivering-doubt
+	  <doc>
+	    Hand, palm down, quivers a little from side to side to
+	    negate something or express doubt. Verbalization: "don't
+	    know", "not at all", "that's not right", "not exactly".
+	  </doc>
+	</value-el>
+	<value-el>
+	  refusal
+	  <doc>
+	    Verbalization: "no, thanks", "no", "really not". Waving
+	    hand/palm/index finger toward addressee, usually at a low
+	    level and with low intensity. Refusing idea, proposal,
+	    offer with a certain amount of politeness but can look
+	    condescending.
+	  </doc>
+	</value-el>
+	<value-el>
+	  so-what
+	  <doc>
+	    Signalling the provocation for an answer from a (possibly
+	    imaginary) interlocutor which obviously cannot be given
+	    because the answer is insinuated to be
+	    absurd/incredible/childish. Verbalized as "So what!" or
+	    just "So...?". Often performed by showing the palms and
+	    shaking the head with raised eyebrows. When used while
+	    recounting something it indicates that the content is
+	    trivial or obvious or blurry. Verbalizations: "or
+	    something like this", "or God knows..."
+	  </doc>
+	</value-el>
+	<value-el>
+	  surprise-hands
+	  <doc>
+	    Signalling some unexpected event.
+	  </doc>
+	</value-el>
+	<value-el>
+	  two-sided-doubt
+	  <doc>
+	  Signalling that something (a) may not be right, or (b) is
+	  subtly two-sided. Performed by showing palm up and then
+	  turning the hand that palm is down, and then flipping back
+	  and forth. Verbalization: (a) "I don't know", "rather not"
+	  (b) "pretty complicated", "not that easy".
+	  </doc>
+	</value-el>
+	<value-el>
+	  wipe
+	  <doc>
+	    A gesture intending to stop something/one ("Let's end
+	    this"), indicating a break ("He stopped doing it.") or
+	    signalling dismission ("Let's forget about it"). Movement
+	    parallel to the floor like wiping a table.
+	  </doc>
+	</value-el>
+	<value-el>
+	  wave
+	  <doc>
+	    A gesture for getting attention, with open relaxed hand(s),
+	    palm towards addressee/audience. Verbalization: "hey!",
+	    "here!", "look here!"
+	  </doc>
+	</value-el>
+   </valueset>
+
+   <valueset name="metaphoricType">
+        <value-el>
+	  conduit
+	  <doc>
+	    The actual object or idea is treated as a material
+	    substance that can be presented in a cupped hand or as a
+	    larger object held with two hands.
+	  </doc>
+	</value-el>
+        <value-el>
+	  conduit-emerge
+	  <doc>
+	    A movement indicating a substance coming up, breaking
+	    through a surface upward. Hands usually dig somewhere and
+	    mimic throwing it in the air. This is not a "change"
+	    metaphoric, though if this movement were to be continued
+	    it could become one. So this one halts abruptly.
+	  </doc>
+	</value-el>
+        <value-el>
+	  conduit-fling
+	  <doc>
+	    Metaphoric object is thrown with some power at the final
+	    place. Refers to the motion of the gesture. Note that this
+	    motion includes the RELEASE of the conduit object, i.e. an
+	    actual object would fall to the floor. Otherwise, it is a
+	    normal conduit.
+	  </doc>
+	</value-el>
+        <value-el>
+	  conduit-flip
+	  <doc>
+	    Hand(s) indicate(s) that the substantialized topic is
+	    suddenly brought up/presented by showing the palm
+	    (presenting the topic/item) in a flipping movement. Very
+	    frequent. Unclear whether this should be treated as a
+	    beat.
+	  </doc>
+	</value-el>
+        <value-el>
+	  conduit-fitting
+	  <doc>
+	    A movement that indicates that the subject fits together
+	    or does not fit together. A substance is shown and a
+	    movement of compressing the substance is performed.
+	  </doc>
+	</value-el>
+        <value-el>
+	  conduit-open
+	  <doc>
+	    Open fist with emphasis.
+	  </doc>
+	</value-el>
+        <value-el>
+	  conduit-snatch
+	  <doc>
+	    Metaphoric object is snatched out of the air like an
+	    insect und often held for same time.
+	  </doc>
+	</value-el>
+        <value-el>
+	  conduit-sphere
+	  <doc>
+	    Movement indicates a spherical shape. Usually performed
+	    when taking a wider perspective, talking about a "whole".
+	  </doc>
+	</value-el>
+        <value-el>
+          clockwork
+	  <doc>
+	    Mental processes are seen as a clockwork with wheels, one
+	    of which is turned by a gesture close to the head with one
+	    or both hands.
+	  </doc>
+	</value-el>
+        <value-el>
+	  beam
+	  <doc>
+	    Stems from the idea that a gaze is like a beam originating
+	    from one's eyes.
+	  </doc>
+	</value-el>
+        <value-el>
+	  bridge
+	  <doc>
+	    Finger or hand makes a curved line like a bridge. Refers
+	    to a logical step or the next item in a sequence.
+	  </doc>
+	</value-el>
+        <value-el>
+	  change
+	  <doc>
+	    Usually circular, rotating movement indicating change or
+	    progress.
+	  </doc>
+	</value-el>
+        <value-el>
+	  heart
+	  <doc>
+	    Usually a shovelling motion like shoving a substance from
+	    the heart region to the surface. Referring to emotional
+	    states.
+	  </doc>
+	</value-el>
+        <value-el>
+	  hold
+	  <doc>
+	    A motion of grabbing a bell-jar (Käseglocke) like thing
+	    which encompasses the subject at hand. Is actually a conduit.
+	  </doc>
+	</value-el>
+        <value-el>
+	  idea
+	  <doc>
+	    Motion indicating an idea springing from one's (fore)head,
+	    done with a finger or a hand (or two).
+	  </doc>
+	</value-el>
+        <value-el>
+	  aura
+	  <doc>
+	    Hand indicate a spherical aura around one's head or
+	    body. Refers to processes of the mind like thinking,
+	    wondering, non-understanding, madness.
+	  </doc>
+	</value-el>
+   </valueset>
+
+   <valueset name="iconicType">
+        <value-el>rectangular</value-el>
+        <value-el>spherical</value-el>
+        <value-el>semi-spherical</value-el>
+	<value-el>
+	  planarPF
+	  <doc>
+	    Movement on the plane that is parallel to the speaker's
+	    front, i.e. the plane defined by a wall standing in front
+	    of the speaker.
+	  </doc>
+	</value-el>
+	<value-el>
+	  planarPFloor
+	  <doc>
+	    Movement on the plane that is parallel to the floor.
+	  </doc>
+	</value-el>
+	<value-el>
+	  big
+	  <doc>
+	    Hands indicate large size of an object/concept.
+	  </doc>
+	</value-el>
+	<value-el>
+	  drink
+	  <doc>
+	    Hands act as if bringing a glass to the lips in order to
+	    drink.
+	  </doc>
+	</value-el>
+	<value-el>
+	  explosion
+	  <doc>
+	    Hands fly in different directions to depict something big,
+	    forceful, incredible, great.
+	  </doc>
+	</value-el>
+	<value-el>
+	  sway
+	  <doc>
+	    Hands go up and down, each in turn, e.g. left up, right down. 
+	  </doc>
+	</value-el>
+	<value-el>
+	  small
+	  <doc>
+	    Using index finger and thumb to show small distance.
+	  </doc>
+	</value-el>
+	<value-el>
+	  strength
+	  <doc>
+	    Making fists to express aggression, force, strength.
+	  </doc>
+	</value-el>
+        <value-el>away-motion</value-el>
+        <value-el>falling</value-el>
+        <value-el>grabbing</value-el>
+	<value-el>pantomime</value-el>
+        <value-el>writing</value-el>
+   </valueset>
+
+   <valueset name="gspaceHeightType">
+     <value-el>above-head</value-el>
+     <value-el>head</value-el>
+     <value-el>chest</value-el>
+     <value-el>belly</value-el>
+     <value-el>waist</value-el>
+   </valueset>
+   <valueset name="gspaceLateralType">
+     <value-el>middle</value-el>
+     <value-el>left</value-el>
+     <value-el>right</value-el>
+     <value-el>sym-middle</value-el>
+     <value-el>sym-center</value-el>
+     <value-el>sym-outer</value-el>
+     <value-el>sym-extreme</value-el>
+     <value-el>symmetrical</value-el>
+     <value-el>asymmetrical</value-el>
+     <value-el>outer-left</value-el>
+     <value-el>outer-right</value-el>
+     <value-el>extreme-left</value-el>
+     <value-el>extreme-right</value-el>
+   </valueset>
+
+   <valueset name="headshiftType">
+      <value-el color="#eeff00">
+        raise
+	<doc>
+	  Chin rises.
+	</doc>
+      </value-el>
+      <value-el color="#ffaa00">
+        lower
+	<doc>
+	  Chin lowers.
+	</doc>
+      </value-el>
+      <value-el color="#eeff55">
+        raise+turn
+	<doc>
+	  Diagonal movement.
+	</doc>
+      </value-el>
+      <value-el color="#ffaa55">
+        lower+turn
+	<doc>
+	  Diagonal movement.
+	</doc>
+      </value-el>
+      <value-el color="#aaff00">
+        sideways
+	<doc>
+	  Tilting (German: kippen) the head toward one side.
+	</doc>
+      </value-el>
+      <value-el color="#ee00ee">
+        turn
+	<doc>
+	  Rotation of the head. Do not confuse with rotation of the
+	  body! A good indicator for the initiation of a head turn is
+	  an eye-blink.
+	</doc>
+      </value-el>
+      <value-el>
+        nod
+	<doc>
+	  This is an <b>emblem</b>. It is therefore distinguished from
+	  a mere raise-lower sequence by assuming the intention to
+	  nod.
+	</doc>
+      </value-el>
+      <value-el>
+        shake
+	<doc>
+	  Also an <b>emblem</b>. Therefore distinguished from a mere
+	  turn-turn sequence by assuming the intention to shake.
+	</doc>
+      </value-el>
+   </valueset>
+
+   <valueset name="rstdirType">
+     <value-el color="#ffaa00">
+       backward
+       <doc>
+         Marked span is related to previous span.
+       </doc>
+     </value-el>
+     <value-el color="#9900ee">
+       forward
+       <doc>
+         Marked span is related to following span.
+       </doc>
+     </value-el>
+   </valueset>
+
+   <valueset name="topicType">
+    <value-el>introduction</value-el>
+    <value-el>book-content</value-el>
+    <value-el>book-discussion</value-el>
+    <value-el>author</value-el>
+    <value-el>discussion</value-el>
+   </valueset>
+   <valueset name="bodypartType">
+    <value-el>forehead</value-el>
+    <value-el>hair</value-el>
+    <value-el>cheek</value-el>
+    <value-el>eyes</value-el>
+    <value-el>eyebrow</value-el>
+    <value-el>nose</value-el>
+    <value-el>ear</value-el>
+    <value-el>mouth</value-el>
+    <value-el>neck</value-el>
+    <value-el>shoulder</value-el>
+    <value-el>chest</value-el>
+    <value-el>arm</value-el>
+    <value-el>hand</value-el>
+    <value-el>leg</value-el>
+    <value-el>knee</value-el>
+    <value-el>lap</value-el>
+    <value-el>hair</value-el>
+   </valueset>
+   <valueset name="touchmotionType">
+    <value-el>tap</value-el>
+    <value-el>stroke</value-el>
+    <value-el>pinch</value-el>
+    <value-el>pick</value-el>
+    <value-el>scratch</value-el>
+   </valueset>
+   <valueset name="handshapeType">
+    <value-el>open-flat</value-el>
+    <value-el>open-spread</value-el>
+    <value-el>halfopen-flat</value-el>
+    <value-el>halfopen-spread</value-el>
+    <value-el>fist</value-el>
+    <value-el>finger-ring</value-el>
+    <value-el>purse</value-el>
+    <value-el>index-out</value-el>
+    <value-el>thumb-out</value-el>
+   </valueset>
+   <valueset name="handednessType">
+    <value-el>both</value-el>
+    <value-el>left</value-el>
+    <value-el>right</value-el>
+   </valueset>
+   <valueset name="emphasisType">
+     <value-el color="#eeff00">strong</value-el>
+     <value-el color="#ffaa00">moderate</value-el>
+     <value-el color="#aaff00">reduced</value-el>
+   </valueset>
+
+  </valuetype-def>
+ </head>
+
+<!-- ************************* BODY ******************** -->
+
+ <body>
+  <track-spec name="take" type="primary">
+    <doc>
+      This track records the take, i.e. the view of the camera on the
+      scene. I use this track to see where the speaker of interest is
+      <b>not</b> in the picture, i.e. in a file where Reich-Ranicki is
+      of interest I will only annotate those takes where RR in not in
+      the picture.
+    </doc>
+    <attribute name="visible">
+      <doc>
+        The actual person/group seen in the take.
+      </doc>
+      <value-el color="#eeee00">
+        Reich-Ranicki
+	<doc>Also known as: the Pope of literary critique.</doc>
+      </value-el>
+      <value-el color="#dd5500">Karasek</value-el>
+      <value-el color="#ee00ee">Löffler</value-el>
+      <value-el>invited guest</value-el>
+      <value-el color="#00dd00">
+        all
+	<doc>
+	  Panoramic view on all four speakers.
+	</doc>
+      </value-el>
+      <value-el color="#ee8800">audience</value-el>
+      <value-el color="#aa5500">book</value-el>
+      <value-el>other</value-el>
+    </attribute>
+  </track-spec>
+
+  <track-spec name="trl" type="primary"
+              color-attr="emphasis">
+    <doc>
+      This track contains the transliteration of the spoken
+      discourse. The <b>token</b> attribute contains the word or sound
+      uttered. There are a number of special marks signified by
+      squared brackets like [breath] or [aeh] for the mark-up of
+      nonverbal sounds. Note that there is <b>no syllable
+      information</b>.
+    </doc>
+    <attribute name="token">
+      <doc>
+        Words and nonverbal sounds.
+      </doc>
+    </attribute>
+    <attribute name="emphasis" valuetype="emphasisType">
+      <doc>
+        Emphasis of this word. Possible values are the same as in
+        SABLE.
+      </doc>
+    </attribute>
+  </track-spec>
+    
+ <group name="ling" collapse="true">    
+   <doc>
+     Groups all tracks with linguistic information. The tracks
+     typically refer to the trl track.
+   </doc>
+   <track-spec name="i-phrase" type="span" ref="trl">
+     <doc>
+       Models the intonation phrase. This is a very fine segmentation
+       employed here taking into account different features to
+       identify a border (consult Stefan Baumann for details).
+     </doc>
+     <attribute name="type">
+       <doc>
+         There are different recurring patterns in the intonation
+         contour and other, more technically oriented,
+         distinctions. This dimension mixes some aspects but is still
+         informative.
+       </doc>
+       <value-el>
+         copy
+	 <doc>
+	   The intonational contour of the preceding intonational
+	   phrase is reused for effect.
+	 </doc>
+       </value-el>
+       <value-el>
+         repair
+       </value-el>
+       <value-el>
+         abandoned
+       </value-el>
+     </attribute>
+   </track-spec>
+   <track-spec name="rst" type="span" ref="trl"
+               color-attr="direction1">
+     <doc>
+       Shows Rhetorical Relations coded with Mick O'Donnel's tool and
+       imported here. The hierarchy is flattened, the direction
+       indicates whether the current span was related to a previous or
+       a following span.
+     </doc>
+     <attribute name="relation1">
+       <doc>
+         Relation that is closer to the leafs of the RST tree. This
+         relation has therefore more relevance to this particular
+         span.
+       </doc>
+     </attribute>
+     <attribute name="direction1" valuetype="rstdirType">
+       <doc>
+         Tells which direction in the known RST scheme this relation
+         is pointing to.
+       </doc>
+     </attribute>
+     <attribute name="relation2">
+       <doc>
+         This relation is higher up in the tree, i.e. closer to the
+         root. Its meaning may therefore be more abstract (and
+         hidden?).
+       </doc>
+     </attribute>
+     <attribute name="direction2" valuetype="rstdirType">
+       <doc>
+         Tells which direction in the known RST scheme this relation
+         is pointing to.
+       </doc>
+     </attribute>
+   </track-spec>
+
+ </group>
+
+  <group name="gesture">
+    <doc>
+      This group clusters all so-called gestures which are really <b>arm
+      and hand gestures</b>. The members of this group give a functional
+      view on gesture. Overlap is only possible with beats that can
+      occur in any type of gesture. Look at description of <b>phase</b>
+      values to see how that is coded.
+    </doc>
+
+    <track-spec name="phase" type="primary" >
+      <attribute name="type" valuetype="phaseType">
+      <doc>
+        My phase description is based on the phases postulated by
+        Kendon and McNeill (1992), later on extended by Kita et
+        al. (1999).
+      </doc>
+      </attribute>
+      <attribute name="trajectory" valuetype="TimestampedPoints" >
+	<config-spatial>
+	  <connections type="off" color="blue" transparency="0.5" size="2" />
+	  <marker numbering="on" color="yellow" transparency="0.5" size="5" filled="false" />
+	</config-spatial>
+      </attribute> 
+
+      <attribute name="handedness" valuetype="handednessType" />
+    </track-spec>
+
+    <track-spec name="phrase" type="span" ref="gesture.phase">
+      <attribute name="category" valuetype="gestureType" display="true" />
+      <attribute name="emblem type" valuetype="emblemType" display="true" />
+      <attribute name="metaphoric type" valuetype="metaphoricType" display="true" />
+      <attribute name="iconic type" valuetype="iconicType" display="true" />
+      <attribute name="correlate" valuetype="MultiLink" />
+      <attribute name="deictic where" valuetype="deicticType" display="true" />
+      <attribute name="adaptor where" valuetype="bodypartType" display="true" />
+      <attribute name="copy gesture" valuetype="Boolean" display="true" />
+      <attribute name="certainty" valuetype="Number(0,6)" />
+      <!-- <attribute name="open number" valuetype="Number" /> -->
+    </track-spec>
+
+
+    <track-spec name="group" type="span" ref="gesture.phrase">
+      <attribute name="name" valuetype="String" />
+    </track-spec>
+
+  </group>
+
+ </body> 
+
+
+
+</annotation-spec>

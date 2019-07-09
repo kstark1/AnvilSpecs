@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+This specification introduces PRE-COLLAPSED GROUPS and DOCUMENTATION.
+
+The group "gesture" will be collapsed each time a file is loaded. You
+can control this with the "collapse" feature in the group's
+definition.
+
+The documentation applied as demonstrated here can be exploited during
+editing by clicking on the question marks in the window that appears
+on adding or editing track elements.
+-->
+
+<annotation-spec>
+  <head>
+    <valuetype-def>
+      <valueset name="phaseType">
+          <value-el>preparation</value-el>
+          <value-el>stroke</value-el>
+          <value-el>hold</value-el>
+          <value-el>retraction</value-el>
+      </valueset>
+
+      <valueset name="gestureType">
+          <value-el>
+	  <doc>
+	  A pointing gesture, referring to locations or objects or
+	  something abstract.
+	  </doc>
+	  deictic
+	  </value-el>
+          <value-el>
+	  <doc>
+	  A gesture resembling in form or motion the semantic content
+	  of the co-occurring speech.
+	  </doc>
+	  iconic
+	  </value-el>
+          <value-el>
+	  <doc>
+	  A gesture with conventionalized meaning.
+	  </doc>
+	  emblem
+	  </value-el>
+          <value-el>
+	  <doc>
+	  A stroke or series of strokes with no recognizable shape
+	  (i.e. no deictic, iconic or emblamtic gesture). A rest class.
+	  </doc>
+	  beat
+	  </value-el>
+      </valueset> 
+    </valuetype-def>
+  </head>
+
+  <body>
+
+    <track-spec name="wave" type="waveform" />
+
+    <track-spec name="words" type="primary">
+      <attribute name="token" valuetype="String" />
+    </track-spec>
+
+    <group name="gesture" collapse="true" >
+      <track-spec name="phase" type="primary">
+        <attribute name="type" valuetype="phaseType" />
+      </track-spec>
+
+      <track-spec name="phrase" type="span" ref="gesture.phase">
+        <doc>
+	  A gesture phrase is what is commonly referred to as a
+	  <b>gesture</b>.
+	</doc>
+	<attribute name="category" valuetype="gestureType" />
+      </track-spec>
+    </group>
+
+  </body>
+</annotation-spec>
+
